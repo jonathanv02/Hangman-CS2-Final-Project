@@ -10,6 +10,7 @@ Jonathan Villanueva
 """
 from graphics import *
 import random
+import string
 
 """
 Description:
@@ -23,36 +24,53 @@ def draw_window():
     win.yUp()	#makes (0,0) at the bottom left
     return win
 
-def draw_circle(win):
+#def draw_circle(win):
 
-def draw_line(win):
+#def draw_line(win):
 
-def draw_rect():
+#def draw_rect():
 
-def hangman_game(win, word):
+
+
+def open_file():
+    open_file = open("words.txt")
+    file_list = []
+    for line in open_file:
+        file_list.append(line)
+    return file_list
+
+def random_word(file_list):
+    random_word = random.choice(file_list)
+    return random_word
+
+
+def hangman_game(word):
     turns = 6
-    guess_letter = raw_input("What letter would you like to guess:")
-    while turns != 0:
-        if guess_letter in word:
-            if guess_letter == word[]
-        
-        else:
-            #puts letter to the wrong guess list and draws a body part
+    guesses = ""
+    while turns > 0:
+        guess = raw_input("Guess a letter:")                  
+        if guess not in word:
             turns -= 1
-        
-
-
+            print " Your have {} turns left".format(turns)
+        else:
+            guesses += guess
+                
+            
+    if turns == 0:
+        print "You Lose"
+    else:
+        print " you win with {] turns left".format(turns) 
+    print "{}".format(word)
 
 
 
 def main():
-    win = draw_window()
-
-
-
-    win.getMouse()  #waits for the user to click the screen
-    win.close()	    #closes the window
+    #win = draw_window()
+    file_list = open_file()
+    word = random_word(file_list)
+    hangman_game(word)
+    #win.getMouse()  #waits for the user to click the screen
+    #win.close()	    #closes the window
        
 if __name__ == "__main__":
     main()
-
