@@ -3,6 +3,7 @@
 Name: Jonathan Villanueva
 Assignment #: A5-05: Linear & Binary Search
 Summary: Hangman game using a graphics window
+
 HONOR CODE: On my honor, I have neither given nor recieved
 any unacknowledged aid on this program
 Jonathan Villanueva
