@@ -1,7 +1,7 @@
 """
 Name: Jonathan Villanueva
 Assignment #: A5-05: Linear & Binary Search
-Summary: Hnagman game using a graphics window
+Summary: Hangman game using a graphics window
 
 HONOR CODE: On my honor, I have neither given nor recieved
 any unacknowledged aid on this program
@@ -123,11 +123,11 @@ def man(win):
     w = win.getWidth()
     h = win.getHeight()
     body = draw_circle(Point(w/4*2,h/4*3-25), 25, win),\
-           draw_line( w/4*2, h/4*3-50, w/4*2, h/2, "black", win),\
-           draw_line( w/4*2, h/4*3-60, w/4+ w/8, h/2+30, "black", win),\
-           draw_line( w/4*2, h/4*3-60, w/2+w/8, h/2+30, "black", win),\
-           draw_line( w/4*2, h/2, w/4+w/8, h/2-40, "black", win),\
-           draw_line( w/4*2, h/2, w/2+w/8, h/2-40, "black", win)
+           draw_line( w/4*2, h/4*3-50, w/4*2, h/2, "blue", win),\
+           draw_line( w/4*2, h/4*3-60, w/4+ w/8, h/2+30, "blue", win),\
+           draw_line( w/4*2, h/4*3-60, w/2+w/8, h/2+30, "blue", win),\
+           draw_line( w/4*2, h/2, w/4+w/8, h/2-40, "brown", win),\
+           draw_line( w/4*2, h/2, w/2+w/8, h/2-40, "brown", win)
     return body
 
 """
