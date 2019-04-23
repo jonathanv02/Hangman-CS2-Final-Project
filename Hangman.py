@@ -1,4 +1,3 @@
-    
 """
 Name: Jonathan Villanueva
 Assignment #: A5-05: Linear & Binary Search
@@ -96,7 +95,7 @@ Return:
 Plan:
 """
 def random_word(file_list):
-    random_word = random.choice(file_list)
+    random_word = random.choice(file_list).lower()
     return random_word
 
 """
@@ -147,7 +146,7 @@ def hangman_game(word, win):
     h = win.getHeight()
     index_count = 0
     body = man(win)
-
+    print word
     # undraws the list of body parts from the window
     for item in body:
         item.undraw()
@@ -174,6 +173,7 @@ def hangman_game(word, win):
             turns -= 1        
             print "Wrong"    
             print "You have", + turns, 'more guesses'
+            print word
 
             # draws the item in the list of body parts and adds 1 to index count
             body[index_count].draw(win)
