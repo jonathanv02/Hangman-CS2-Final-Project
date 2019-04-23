@@ -1,8 +1,8 @@
-    
 """
 Name: Jonathan Villanueva
 Assignment #: A5-05: Linear & Binary Search
 Summary: Hangman game using a graphics window
+
 HONOR CODE: On my honor, I have neither given nor recieved
 any unacknowledged aid on this program
 Jonathan Villanueva
@@ -164,6 +164,8 @@ def hangman_game(word, win):
             print
             text( w/2, h/2, "You won", "green", win)
             text( w/2, h/4, "You Guessed: {}".format(word), "green", win)
+            #draw_circle(Point(,), radius,win)
+            #draw_circle(Point(,), radius,win)
             #breaks out of script
             break
         print
@@ -182,6 +184,7 @@ def hangman_game(word, win):
                 text( w/2, h/4, "The word was: {}".format(word), "red", win)
                 draw_line(w/10, h-h/10, w-w/10, h/10, "red", win)
                 draw_line(w-w/10, h-h/10, w/10, h/10, "red", win)
+                
 
 """
 Description: calls all the methods neede to do the game
@@ -201,4 +204,3 @@ def main():
        
 if __name__ == "__main__":
     main()
-    
