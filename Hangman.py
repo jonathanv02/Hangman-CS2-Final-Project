@@ -68,10 +68,10 @@ Parameters:
 Return: nothing
 Plan: have a point for the text, color it, size it, and draw it.
 """
-def text( x, y, string, color, win):
+def text( x, y, string, color, num, win):
     text = Text(Point(x, y), string)
     text.setFill(color)
-    text.setSize(36)
+    text.setSize(num)
     text.draw(win)
 
 """
@@ -82,7 +82,13 @@ Return:
 Plan: will open the text file and append each item into an empty list
 """
 def open_file():
-    open_file = open("words.txt")
+    level = raw_input("Would you like easy, medium or hard level of words?:")
+    if level == "hard":
+        open_file = open("hard.txt")
+    elif level == "medium":
+        open_file = open("medium.txt")
+    else:
+        open_file = open("easy.txt")
     file_list = []
     for line in open_file:
         file_list.append(line)
@@ -95,7 +101,8 @@ Return:
 Plan:
 """
 def random_word(file_list):
-    random_word = random.choice(file_list).lower()
+    word = random.choice(file_list).lower()
+    random_word = word.strip()
     return random_word
 
 """
@@ -110,6 +117,7 @@ def draw_structure(win):
     h = win.getHeight()
     draw_line(w/4, h/4, w/4, h/4*3, "black", win)
     draw_line(w/4, h/4*3, w/4*2, h/ 4*3, "black", win)
+    text( w/8, h-h/8, "Guessed Letters:", "black", 12, win)
 
 """
 Description: makes a list of shape comands for the mans body
@@ -152,18 +160,26 @@ def hangman_game(word, win):
         item.undraw()
     guesses = ''
     turns = 6
+    len_word = len(word)
+    w_div = w/len_word
+    mult = 0
+    for i in range(len_word):
+        text( w_div*mult+10, h/8, "_".format(word), "green", 36, win)
+        mult += 1
+    times = 0
     while turns > 0:         
         wrong = 0             
         for ch in word:      
-            if ch in guesses:    
-                print ch,    
+            if ch in guesses:
+                
+                text( w/2, h/4, ch, "green", 36, win)    
             else:
-                print "_",     
-                wrong += 1  
+                print "__",     
+                wrong += 1
         if wrong == 0:
             print
-            text( w/2, h/2, "You won", "green", win)
-            text( w/2, h/4, "You Guessed: {}".format(word), "green", win)
+            draw_structure(win)
+            text( w/2, h/4, "You Guessed: {}".format(word), "green", 36, win)
             #breaks out of script
             break
         print
@@ -179,8 +195,8 @@ def hangman_game(word, win):
             body[index_count].draw(win)
             index_count += 1
             if turns == 0:           
-                text( w/2, h/2,"You Lose", "red", win)
-                text( w/2, h/4, "The word was: {}".format(word), "red", win)
+                text( w/2, h/2,"You Lose", "red", num, win)
+                text( w/2, h/4, "The word was: {}".format(word), "red", 36, win)
                 draw_line(w/10, h-h/10, w-w/10, h/10, "red", win)
                 draw_line(w-w/10, h-h/10, w/10, h/10, "red", win)
 
@@ -192,9 +208,9 @@ Plan: Will place the methods that will need to be called
 """
 def main():
     win = draw_window()
+    draw_structure(win)
     file_list = open_file()
     word = random_word(file_list)
-    draw_structure(win)
     hangman_game(word, win)
     win.getMouse()  #waits for the user to click the screen
     win.close()	    #closes the window
