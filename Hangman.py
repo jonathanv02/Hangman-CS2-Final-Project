@@ -154,7 +154,6 @@ def hangman_game(word, win):
     h = win.getHeight()
     index_count = 0
     body = man(win)
-    print word
     # undraws the list of body parts from the window
     for item in body:
         item.undraw()
@@ -164,15 +163,21 @@ def hangman_game(word, win):
     w_div = w/len_word
     mult = 0
     for i in range(len_word):
-        text( w_div*mult+10, h/8, "_".format(word), "green", 36, win)
+        text( w_div*mult+20, h/8, "_".format(word), "green", 36, win)
         mult += 1
-    times = 0
+    
     while turns > 0:         
-        wrong = 0             
+        wrong = 0
+        times = 0
         for ch in word:      
             if ch in guesses:
-                
-                text( w/2, h/4, ch, "green", 36, win)    
+                print ch,
+                index = word.index(ch)
+                for i in range(len_word):
+                    if index == times:
+                        text( w_div*index+20, h/8, ch, "black", 36, win)
+                        print  w_div*index+20, h/8, ch
+                    times += 1
             else:
                 print "__",     
                 wrong += 1
@@ -184,7 +189,7 @@ def hangman_game(word, win):
             break
         print
         guess = raw_input("guess a letter:") 
-        guesses += guess                    
+        guesses += guess
         if guess not in word:  
             turns -= 1        
             print "Wrong"    
@@ -195,7 +200,8 @@ def hangman_game(word, win):
             body[index_count].draw(win)
             index_count += 1
             if turns == 0:           
-                text( w/2, h/2,"You Lose", "red", num, win)
+                text( w/2, h/2,"You Lose", "red", 36
+                      , win)
                 text( w/2, h/4, "The word was: {}".format(word), "red", 36, win)
                 draw_line(w/10, h-h/10, w-w/10, h/10, "red", win)
                 draw_line(w-w/10, h-h/10, w/10, h/10, "red", win)
