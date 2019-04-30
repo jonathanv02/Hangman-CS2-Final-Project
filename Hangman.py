@@ -202,11 +202,8 @@ def hangman_game(word, win):
                 for i in range(len_word):
                     if i == ch_index:
                         num_i = i
-                    text( w_div*num_i+20, h/8, input_list[num_i], "black",\
+                        text( w_div*num_i+20, h/8, input_list[num_i], "black",\
                           36, win)
-                
-                
-        print input_list,
         if wrong == 0:
             print
             draw_structure(win)
@@ -220,8 +217,7 @@ def hangman_game(word, win):
         if guess not in word:  
             turns -= 1        
             print "Wrong"    
-            print "You have", + turns, 'more guesses'
-            print word
+            print "You have", + turns, "more guesses"
 
             # draws the item in the list of body parts and adds 1 to index count
             body[index_count].draw(win)
