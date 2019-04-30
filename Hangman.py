@@ -139,6 +139,22 @@ def man(win):
     return body
 
 """
+Description: list of underscores
+Parameters:
+    word:word to guess
+    win: graphics window
+Return:
+    list: list of underscores
+Plan: append an underscore into the list the len of the word
+"""
+def print_letter(word, win):
+    list = []
+    for i in range(len(word)):
+        list.append("_")
+    return list
+
+
+"""
 Description: Plays the game of Hangman
 Parameters:
     word: random word from a list
@@ -154,33 +170,43 @@ def hangman_game(word, win):
     h = win.getHeight()
     index_count = 0
     body = man(win)
+    input_list = print_letter(word, win)
     # undraws the list of body parts from the window
     for item in body:
         item.undraw()
-    guesses = ''
+    guesses = ""
+    other_guess = ""
     turns = 6
     len_word = len(word)
     w_div = w/len_word
     mult = 0
+    times = 0
     for i in range(len_word):
-        text( w_div*mult+20, h/8, "_".format(word), "green", 36, win)
+        text( w_div*mult+20, h/8, "_".format(word), "black", 36, win)
         mult += 1
     
     while turns > 0:         
         wrong = 0
-        times = 0
-        for ch in word:      
+        for ch in word:
+            
             if ch in guesses:
                 print ch,
-                index = word.index(ch)
-                for i in range(len_word):
-                    if index == times:
-                        text( w_div*index+20, h/8, ch, "black", 36, win)
-                        print  w_div*index+20, h/8, ch
-                    times += 1
+                for i in range(1):
+                    ch_index = word[i]
             else:
-                print "__",     
+                print "_",     
                 wrong += 1
+            if ch == other_guess:
+                ch_index = word.index(ch)
+                input_list[ch_index] = ch
+                for i in range(len_word):
+                    if i == ch_index:
+                        num_i = i
+                    text( w_div*num_i+20, h/8, input_list[num_i], "black",\
+                          36, win)
+                
+                
+        print input_list,
         if wrong == 0:
             print
             draw_structure(win)
@@ -190,6 +216,7 @@ def hangman_game(word, win):
         print
         guess = raw_input("guess a letter:") 
         guesses += guess
+        other_guess = guess
         if guess not in word:  
             turns -= 1        
             print "Wrong"    
